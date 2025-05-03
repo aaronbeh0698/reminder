@@ -2,11 +2,12 @@ import { google } from 'googleapis';
 
 // 建立一個 OAuth2 客戶端
 export function getOAuth2Client() {
-    const CLIENT_ID = '284651525389-hq39oo1b1foskmnr1a7em4f9vti7595p.apps.googleusercontent.com';
-    const CLIENT_SECRET = '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ET';
-    const REDIRECT_URI = 'http://localhost';
-
-    return new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    const oAuth2Client = new google.auth.OAuth2(
+        process.env.GOOGLE_CLIENT_ID,
+        process.env.GOOGLE_CLIENT_SECRET,
+        process.env.GOOGLE_REDIRECT_URI  // 這個可以直接寫 'http://localhost' 也可以用 env
+    );
+    return oAuth2Client;
 }
 
 // 加一個日曆事件
